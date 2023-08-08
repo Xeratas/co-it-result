@@ -145,7 +145,7 @@
             this.ctrl_IncludeAdditionalProtection.TabIndex = 11;
             this.ctrl_IncludeAdditionalProtection.Text = "Zusatzschutz";
             this.ctrl_IncludeAdditionalProtection.UseVisualStyleBackColor = true;
-            this.ctrl_IncludeAdditionalProtection.CheckedChanged += new System.EventHandler(this.ctrl_InkludiereZusatzschutz_CheckedChanged);
+            this.ctrl_IncludeAdditionalProtection.CheckedChanged += new System.EventHandler(this.ctrl_IncludeAdditionalProtection_CheckedChanged);
             // 
             // ctrl_ZusatzschutzAufschlag
             // 
@@ -181,7 +181,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Neue Kalkulation";
-            this.Load += new System.EventHandler(this.Form_NeueKalkulation_Load);
+            this.Load += new System.EventHandler(this.Form_NewCalculation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

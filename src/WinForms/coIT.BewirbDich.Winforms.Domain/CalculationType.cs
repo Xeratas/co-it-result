@@ -3,6 +3,6 @@
 public enum CalculationType
 {
     salesVolume = 1,
-    HousholdBudget = 2,
+    housholdBudget = 2,
     employeeCount = 3
 }

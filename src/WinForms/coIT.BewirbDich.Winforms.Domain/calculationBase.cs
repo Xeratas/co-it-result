@@ -12,21 +12,13 @@ namespace coIT.BewirbDich.Winforms.Domain;
 public class CalculationBase
 {
     public decimal baseVolume { get; set; }
-    public enum calculationBaseType{
-        salesVolume,
-        householdBudget,
-        emplyeeCount
-    }
 
-    public calculationBaseType CalculationBaseType { get; set; }    
-
-
-    public void setBaseVolume(decimal volume)
+    public void setBaseVolume(decimal volume, CalculationType type)
     {
-        switch (CalculationBaseType)
+        switch (type)
         {
-            case calculationBaseType.salesVolume:
-            case calculationBaseType.householdBudget:
+            case CalculationType.salesVolume:
+            case CalculationType.housholdBudget:
                 baseVolume = volume;
                 break;
             default:

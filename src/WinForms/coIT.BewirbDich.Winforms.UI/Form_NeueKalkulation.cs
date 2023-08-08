@@ -42,7 +42,7 @@ namespace coIT.BewirbDich.Winforms.UI
         private InsuranceCertificate calculateCertificate(InsuranceCertificate certificate)
         {
             //Versicherungsnehmer, die nach Haushaltssumme versichert werden (primär Vereine) stellen immer ein mittleres Risiko da
-            if (certificate.calculationType == CalculationType.HousholdBudget)
+            if (certificate.calculationType == CalculationType.housholdBudget)
             {
                 ctrl_RiskFactor.SelectedText = Enum.GetName(typeof(RiskFactor), RiskFactor.Moderate);
                 certificate.riskFactor = RiskFactor.Moderate;
@@ -70,17 +70,17 @@ namespace coIT.BewirbDich.Winforms.UI
             switch (certificate.calculationType)
             {
                 case CalculationType.salesVolume:
-                    certificate.calculationBase.setBaseVolume((decimal) Math.Pow((double)certificate.sumInsured, 0.25d));
+                    certificate.calculationBase.setBaseVolume((decimal) Math.Pow((double)certificate.sumInsured, 0.25d), certificate.calculationType);
                     membershipFee = 1.1m * certificate.calculationBase.baseVolume;
                     if (certificate.hasWebshop) //Webshop gibt es nur bei Unternehmen, die nach Umsatz abgerechnet werden
                         membershipFee *= 2;
                     break;
-                case CalculationType.HousholdBudget:
-                    certificate.calculationBase.setBaseVolume((decimal)Math.Log10((double) certificate.sumInsured));
+                case CalculationType.housholdBudget:
+                    certificate.calculationBase.setBaseVolume((decimal)Math.Log10((double) certificate.sumInsured), certificate.calculationType);
                     membershipFee = 1.0m * certificate.calculationBase.baseVolume + 100m;
                     break;
                 case CalculationType.employeeCount:
-                    certificate.calculationBase.setBaseVolume(certificate.sumInsured / 1000);
+                    certificate.calculationBase.setBaseVolume(certificate.sumInsured / 1000, certificate.calculationType);
 
                     if (certificate.calculationBase.baseVolume < 4)
                         membershipFee = certificate.calculationBase.baseVolume * 250m;
@@ -97,18 +97,18 @@ namespace coIT.BewirbDich.Winforms.UI
 
             if (certificate.riskFactor == RiskFactor.Moderate)
             {
-                if (certificate.calculationType is CalculationType.HousholdBudget or CalculationType.salesVolume)
+                if (certificate.calculationType is CalculationType.housholdBudget or CalculationType.salesVolume)
                     membershipFee *= 1.2m;
                 else
                     membershipFee *= 1.3m;
             }
 
-            certificate.calculationBase.setBaseVolume(Math.Round(certificate.calculationBase.baseVolume, 2));
+            certificate.calculationBase.setBaseVolume(Math.Round(certificate.calculationBase.baseVolume, 2), certificate.calculationType);
             certificate.membershipFee = Math.Round(membershipFee, 2);
             return certificate;
         }
 
-        private void Form_NeueKalkulation_Load(object sender, EventArgs e)
+        private void Form_NewCalculation_Load(object sender, EventArgs e)
         {
             var berechnungsarten = Enum.GetNames(typeof(CalculationType));
             ctrl_CertificationType.Items.AddRange(berechnungsarten);
@@ -117,7 +117,7 @@ namespace coIT.BewirbDich.Winforms.UI
             ctrl_RiskFactor.Items.AddRange(risiken);
         }
 
-        private void ctrl_InkludiereZusatzschutz_CheckedChanged(object sender, EventArgs e)
+        private void ctrl_IncludeAdditionalProtection_CheckedChanged(object sender, EventArgs e)
         {
             ctrl_AdditionalProtectionValue.Visible = ctrl_IncludeAdditionalProtection.Checked;
         }
