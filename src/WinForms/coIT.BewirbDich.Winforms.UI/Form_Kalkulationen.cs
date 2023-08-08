@@ -1,122 +1,122 @@
 using coIT.BewirbDich.Winforms.Domain;
 using coIT.BewirbDich.Winforms.Infrastructure;
+using System.Windows.Forms;
 
 namespace coIT.BewirbDich.Winforms.UI;
 
-public partial class Form1 : Form
+public partial class CertificationOverviewForm : Form
 {
     private readonly IRepository _repo;
 
     private BindingSource _kalkulationen;
 
-    public Form1()
+    public CertificationOverviewForm()
     {
         InitializeComponent();
         _repo = new JsonRepository("database.json");
     }
 
-    private void ctr_NeueKalkulation_Click(object sender, EventArgs e)
+    private void ctr_NewCalculation_Click(object sender, EventArgs e)
     {
-        var neueKalkulationForm = new Form_NeueKalkulation();
+        var newCertificationForm = new CreateNewCertificate_Form(new InsuranceCertificate());
 
-        var dialog = neueKalkulationForm.ShowDialog();
+        var dialog = newCertificationForm.ShowDialog();
         if (dialog == DialogResult.OK)
         {
-            var neueKalkulation = neueKalkulationForm.Kalkulation;
-            _repo.Add(neueKalkulation);
-            _kalkulationen.List.Add(neueKalkulation);
+            var newCalculation = newCertificationForm.Certificate;
+            _repo.Add(newCalculation);
             _kalkulationen.ResetBindings(false);
         }
 
     }
 
-    private void ctrl_Speichern_Click(object sender, EventArgs e)
+    private void ctrl_Save_Click(object sender, EventArgs e)
     {
         _repo.Save();
         MessageBox.Show("Daten gespeichert.", "Vorgang", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
-    private void ctrl_ListeKalkulationen_SelectionChanged(object sender, EventArgs e)
+    private void ctrl_CalculationList_SelectionChanged(object sender, EventArgs e)
     {
-        var kalkulation = AuswahlEinlesen();
+        var selectedRow = getSelectedRow();
 
-        if (kalkulation == null)
+        if (selectedRow == null)
             return;
 
-        OptionenAnzeigen(kalkulation);
+        showOptions(selectedRow);
     }
 
-    private void OptionenAnzeigen(Dokument kalkulation)
+    private void showOptions(InsuranceCertificate calculation)
     {
-        ctrl_VersicherungsscheinAusstellen.Enabled = false;
-        ctrl_AngebotAnnehmen.Enabled = false;
+        ctrIssueCertificate.Enabled = false;
+        ctrAcceptOffer.Enabled = false;
 
-        switch (kalkulation.Typ)
+        switch (calculation.documentType)
         {
-            case Dokumenttyp.Angebot:
-                ctrl_AngebotAnnehmen.Enabled = true;
+            case DocumentType.Angebot:
+                ctrAcceptOffer.Enabled = true;
                 break;
-            case Dokumenttyp.Versicherungsschein:
-                if (!kalkulation.VersicherungsscheinAusgestellt)
-                    ctrl_VersicherungsscheinAusstellen.Enabled = true;
+            case DocumentType.Versicherungsschein:
+                if (!calculation.isCertificateIssued)
+                    ctrIssueCertificate.Enabled = true;
                 break;
             default: throw new InvalidDataException("Unbekannter Dokumenttyp");
         }
     }
 
-    private void ctrl_AngebotAnnehmen_Click(object sender, EventArgs e)
+    private void ctrlAcceptOffer_Click(object sender, EventArgs e)
     {
-        var kalkulation = AuswahlEinlesen();
-        if (kalkulation == null)
+        var selectedRow = getSelectedRow();
+        if (selectedRow == null)
             return;
 
-        kalkulation.Typ = Dokumenttyp.Versicherungsschein;
+        selectedRow.documentType = DocumentType.Versicherungsschein;
 
-        OptionenAnzeigen(kalkulation);
+        showOptions(selectedRow);
         _kalkulationen.ResetBindings(false);
     }
 
     private void ctrl_VersicherungsscheinAusstellen_Click(object sender, EventArgs e)
     {
-        var kalkulation = AuswahlEinlesen();
-        if (kalkulation == null)
+        var selectedRow = getSelectedRow();
+        if (selectedRow == null)
             return;
 
-        kalkulation.VersicherungsscheinAusgestellt = true;
+        selectedRow.isCertificateIssued = true;
 
-        OptionenAnzeigen(kalkulation);
+        showOptions(selectedRow);
 
         MessageBox.Show("Der Versicherungsschein wurde an den Versicherungsnehmer verschickt.", "Vorgang", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
-    private Dokument? AuswahlEinlesen()
+    private InsuranceCertificate? getSelectedRow()
     {
-        var rowsCount = ctrl_ListeKalkulationen.SelectedRows.Count;
-        if (rowsCount == 0 || rowsCount > 1) return null;
+        var rowCount = ctrlCalculationLists.SelectedRows.Count;
+        if (rowCount == 0 || rowCount > 1) return null;
 
-        var zeile = ctrl_ListeKalkulationen.SelectedRows[0];
-        if (zeile == null) return null;
+        var selectedRow = ctrlCalculationLists.SelectedRows[0];
+        if (selectedRow == null) return null;
 
-        var kalkulation = (Dokument)zeile.DataBoundItem;
-        return kalkulation;
+        return (InsuranceCertificate)selectedRow.DataBoundItem;
     }
 
-    private void Form1_Load(object sender, EventArgs e)
+    private void CertificationOverviewLoad(object sender, EventArgs e)
     {
         _kalkulationen = new BindingSource
         {
             DataSource = _repo.List()
         };
 
-        ctrl_ListeKalkulationen.DataSource = _kalkulationen;
+        ctrlCalculationLists.DataSource = _kalkulationen;
 
-        ctrl_ListeKalkulationen.ColumnHeadersVisible = true;
-        ctrl_ListeKalkulationen.AutoGenerateColumns = true;
-        ctrl_ListeKalkulationen.Columns["Id"].Visible = false;
-        ctrl_ListeKalkulationen.Columns["Beitrag"].DefaultCellStyle.Format = "c";
-        ctrl_ListeKalkulationen.Columns["Versicherungssumme"].DefaultCellStyle.Format = "c";
-        ctrl_ListeKalkulationen.AutoResizeColumns();
-        ctrl_ListeKalkulationen.AutoSize = true;
+        ctrlCalculationLists.ColumnHeadersVisible = true;
+        ctrlCalculationLists.AutoGenerateColumns = true;
+        ctrlCalculationLists.Columns["Id"].Visible = false;
+        ctrlCalculationLists.Columns["calculationBase"].Visible = false;
+        ctrlCalculationLists.Columns["membershipFee"].DefaultCellStyle.Format = "c";
+        ctrlCalculationLists.Columns["sumInsured"].DefaultCellStyle.Format = "c";
+        ctrlCalculationLists.AutoResizeColumns();
+        ctrlCalculationLists.AutoSize = true;
 
         _kalkulationen.ResetBindings(false);
     }

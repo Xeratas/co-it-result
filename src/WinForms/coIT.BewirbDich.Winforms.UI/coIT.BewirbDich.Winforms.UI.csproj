@@ -1,17 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0-windows</TargetFramework>
-        <Nullable>enable</Nullable>
-        <UseWindowsForms>true</UseWindowsForms>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <StartupObject>coIT.BewirbDich.Winforms.UI.Program</StartupObject>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\coIT.BewirbDich.Winforms.Infrastructure\coIT.BewirbDich.Winforms.Infrastructure.csproj" />
-      <ProjectReference Include="..\coIT.BewirbDich.Winforms.Domain\coIT.BewirbDich.Winforms.Domain.csproj" />
-    </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StartupObject>coIT.BewirbDich.Winforms.UI.Program</StartupObject>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\workspace\co-it-Aufgabe\bewirb-dich\src\WinForms\Backup\coIT.BewirbDich.Winforms.UI\</UpgradeBackupLocation>
+    <OldToolsVersion>Current</OldToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\coIT.BewirbDich.Winforms.Infrastructure\coIT.BewirbDich.Winforms.Infrastructure.csproj" />
+    <ProjectReference Include="..\coIT.BewirbDich.Winforms.Domain\coIT.BewirbDich.Winforms.Domain.csproj" />
+  </ItemGroup>
 </Project>

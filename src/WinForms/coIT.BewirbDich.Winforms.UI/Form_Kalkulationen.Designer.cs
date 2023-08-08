@@ -1,6 +1,6 @@
 ﻿namespace coIT.BewirbDich.Winforms.UI;
 
-partial class Form1
+partial class CertificationOverviewForm
 {
     /// <summary>
     ///  Required designer variable.
@@ -29,99 +29,99 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-            this.ctr_NeueKalkulation = new System.Windows.Forms.Button();
-            this.ctrl_ListeKalkulationen = new System.Windows.Forms.DataGridView();
-            this.ctrl_Speichern = new System.Windows.Forms.Button();
-            this.ctrl_AngebotAnnehmen = new System.Windows.Forms.Button();
-            this.ctrl_VersicherungsscheinAusstellen = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrl_ListeKalkulationen)).BeginInit();
+            this.ctrNewCalculation = new System.Windows.Forms.Button();
+            this.ctrlCalculationLists = new System.Windows.Forms.DataGridView();
+            this.ctrlSave = new System.Windows.Forms.Button();
+            this.ctrAcceptOffer = new System.Windows.Forms.Button();
+            this.ctrIssueCertificate = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlCalculationLists)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctr_NeueKalkulation
+            // ctrNewCalculation
             // 
-            this.ctr_NeueKalkulation.Location = new System.Drawing.Point(12, 12);
-            this.ctr_NeueKalkulation.Name = "ctr_NeueKalkulation";
-            this.ctr_NeueKalkulation.Size = new System.Drawing.Size(75, 41);
-            this.ctr_NeueKalkulation.TabIndex = 0;
-            this.ctr_NeueKalkulation.Text = "+ NEU";
-            this.ctr_NeueKalkulation.UseVisualStyleBackColor = true;
-            this.ctr_NeueKalkulation.Click += new System.EventHandler(this.ctr_NeueKalkulation_Click);
+            this.ctrNewCalculation.Location = new System.Drawing.Point(12, 12);
+            this.ctrNewCalculation.Name = "ctr_NeueKalkulation";
+            this.ctrNewCalculation.Size = new System.Drawing.Size(75, 41);
+            this.ctrNewCalculation.TabIndex = 0;
+            this.ctrNewCalculation.Text = "+ NEU";
+            this.ctrNewCalculation.UseVisualStyleBackColor = true;
+            this.ctrNewCalculation.Click += new System.EventHandler(this.ctr_NewCalculation_Click);
             // 
-            // ctrl_ListeKalkulationen
+            // ctrlCalculationLists
             // 
-            this.ctrl_ListeKalkulationen.AllowUserToOrderColumns = true;
-            this.ctrl_ListeKalkulationen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ctrlCalculationLists.AllowUserToOrderColumns = true;
+            this.ctrlCalculationLists.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrl_ListeKalkulationen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ctrl_ListeKalkulationen.Location = new System.Drawing.Point(12, 79);
-            this.ctrl_ListeKalkulationen.Name = "ctrl_ListeKalkulationen";
-            this.ctrl_ListeKalkulationen.RowTemplate.Height = 25;
-            this.ctrl_ListeKalkulationen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ctrl_ListeKalkulationen.Size = new System.Drawing.Size(1184, 359);
-            this.ctrl_ListeKalkulationen.TabIndex = 1;
-            this.ctrl_ListeKalkulationen.SelectionChanged += new System.EventHandler(this.ctrl_ListeKalkulationen_SelectionChanged);
+            this.ctrlCalculationLists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ctrlCalculationLists.Location = new System.Drawing.Point(12, 79);
+            this.ctrlCalculationLists.Name = "ctrl_ListeKalkulationen";
+            this.ctrlCalculationLists.RowTemplate.Height = 25;
+            this.ctrlCalculationLists.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ctrlCalculationLists.Size = new System.Drawing.Size(1184, 359);
+            this.ctrlCalculationLists.TabIndex = 1;
+            this.ctrlCalculationLists.SelectionChanged += new System.EventHandler(this.ctrl_CalculationList_SelectionChanged);
             // 
-            // ctrl_Speichern
+            // ctrlSave
             // 
-            this.ctrl_Speichern.Location = new System.Drawing.Point(1111, 12);
-            this.ctrl_Speichern.Name = "ctrl_Speichern";
-            this.ctrl_Speichern.Size = new System.Drawing.Size(75, 41);
-            this.ctrl_Speichern.TabIndex = 2;
-            this.ctrl_Speichern.Text = "Speichern";
-            this.ctrl_Speichern.UseVisualStyleBackColor = true;
-            this.ctrl_Speichern.Click += new System.EventHandler(this.ctrl_Speichern_Click);
+            this.ctrlSave.Location = new System.Drawing.Point(1111, 12);
+            this.ctrlSave.Name = "ctrl_Speichern";
+            this.ctrlSave.Size = new System.Drawing.Size(75, 41);
+            this.ctrlSave.TabIndex = 2;
+            this.ctrlSave.Text = "Speichern";
+            this.ctrlSave.UseVisualStyleBackColor = true;
+            this.ctrlSave.Click += new System.EventHandler(this.ctrl_Save_Click);
             // 
             // ctrl_AngebotAnnehmen
             // 
-            this.ctrl_AngebotAnnehmen.Enabled = false;
-            this.ctrl_AngebotAnnehmen.Location = new System.Drawing.Point(93, 12);
-            this.ctrl_AngebotAnnehmen.Name = "ctrl_AngebotAnnehmen";
-            this.ctrl_AngebotAnnehmen.Size = new System.Drawing.Size(94, 41);
-            this.ctrl_AngebotAnnehmen.TabIndex = 3;
-            this.ctrl_AngebotAnnehmen.Text = "Annehmen 👍";
-            this.ctrl_AngebotAnnehmen.UseVisualStyleBackColor = true;
-            this.ctrl_AngebotAnnehmen.Click += new System.EventHandler(this.ctrl_AngebotAnnehmen_Click);
+            this.ctrAcceptOffer.Enabled = false;
+            this.ctrAcceptOffer.Location = new System.Drawing.Point(93, 12);
+            this.ctrAcceptOffer.Name = "ctrl_AngebotAnnehmen";
+            this.ctrAcceptOffer.Size = new System.Drawing.Size(94, 41);
+            this.ctrAcceptOffer.TabIndex = 3;
+            this.ctrAcceptOffer.Text = "Annehmen 👍";
+            this.ctrAcceptOffer.UseVisualStyleBackColor = true;
+            this.ctrAcceptOffer.Click += new System.EventHandler(this.ctrlAcceptOffer_Click);
             // 
-            // ctrl_VersicherungsscheinAusstellen
+            // ctrlIssueCertificate
             // 
-            this.ctrl_VersicherungsscheinAusstellen.Enabled = false;
-            this.ctrl_VersicherungsscheinAusstellen.Location = new System.Drawing.Point(193, 12);
-            this.ctrl_VersicherungsscheinAusstellen.Name = "ctrl_VersicherungsscheinAusstellen";
-            this.ctrl_VersicherungsscheinAusstellen.Size = new System.Drawing.Size(94, 41);
-            this.ctrl_VersicherungsscheinAusstellen.TabIndex = 4;
-            this.ctrl_VersicherungsscheinAusstellen.Text = "Ausstellen 🖨";
-            this.ctrl_VersicherungsscheinAusstellen.UseVisualStyleBackColor = true;
-            this.ctrl_VersicherungsscheinAusstellen.Click += new System.EventHandler(this.ctrl_VersicherungsscheinAusstellen_Click);
+            this.ctrIssueCertificate.Enabled = false;
+            this.ctrIssueCertificate.Location = new System.Drawing.Point(193, 12);
+            this.ctrIssueCertificate.Name = "ctrlIssueCertificate";
+            this.ctrIssueCertificate.Size = new System.Drawing.Size(94, 41);
+            this.ctrIssueCertificate.TabIndex = 4;
+            this.ctrIssueCertificate.Text = "Ausstellen 🖨";
+            this.ctrIssueCertificate.UseVisualStyleBackColor = true;
+            this.ctrIssueCertificate.Click += new System.EventHandler(this.ctrl_VersicherungsscheinAusstellen_Click);
             // 
-            // Form1
+            // CertificationOverviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 450);
-            this.Controls.Add(this.ctrl_VersicherungsscheinAusstellen);
-            this.Controls.Add(this.ctrl_AngebotAnnehmen);
-            this.Controls.Add(this.ctrl_Speichern);
-            this.Controls.Add(this.ctrl_ListeKalkulationen);
-            this.Controls.Add(this.ctr_NeueKalkulation);
+            this.Controls.Add(this.ctrIssueCertificate);
+            this.Controls.Add(this.ctrAcceptOffer);
+            this.Controls.Add(this.ctrlSave);
+            this.Controls.Add(this.ctrlCalculationLists);
+            this.Controls.Add(this.ctrNewCalculation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "CertificationOverviewForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Deine Bewerbung";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ctrl_ListeKalkulationen)).EndInit();
+            this.Text = "Versicherungsschein-Assistant";
+            this.Load += new System.EventHandler(this.CertificationOverviewLoad);
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlCalculationLists)).EndInit();
             this.ResumeLayout(false);
 
     }
 
     #endregion
 
-    private Button ctr_NeueKalkulation;
-    private DataGridView ctrl_ListeKalkulationen;
-    private Button ctrl_Speichern;
-    private Button ctrl_AngebotAnnehmen;
-    private Button ctrl_VersicherungsscheinAusstellen;
+    private Button ctrNewCalculation;
+    private DataGridView ctrlCalculationLists;
+    private Button ctrlSave;
+    private Button ctrAcceptOffer;
+    private Button ctrIssueCertificate;
 }

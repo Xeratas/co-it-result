@@ -2,123 +2,124 @@
 
 namespace coIT.BewirbDich.Winforms.UI
 {
-    public partial class Form_NeueKalkulation : Form
+    public partial class CreateNewCertificate_Form : Form
     {
-        public Domain.Dokument Kalkulation { get; set; }
+        public Domain.InsuranceCertificate Certificate { get; set; }
 
-        public Form_NeueKalkulation()
+        public CreateNewCertificate_Form(InsuranceCertificate certificate)
         {
+            Certificate = certificate;
             InitializeComponent();
         }
 
-        private void ctrl_Abbrechen_Click(object sender, EventArgs e)
+        private void ctrl_cancle_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void ctrl_Kalkuliere_Click(object sender, EventArgs e)
+        private void ctrl_calculateCertificate_Click(object sender, EventArgs e)
         {
-            var kalkulation = new Dokument();
-            kalkulation.Typ = Dokumenttyp.Angebot;
-            kalkulation.Berechnungsart = (Berechnungsart)Enum.Parse(typeof(Berechnungsart), ctrl_Berechnungsart.Text);
-            kalkulation.Risiko = (Risiko)Enum.Parse(typeof(Risiko), ctrl_Risiko.Text);
-            kalkulation.InkludiereZusatzschutz = ctrl_InkludiereZusatzschutz.Checked;
-            if (float.TryParse(ctrl_ZusatzschutzAufschlag.Text.Replace("%", string.Empty), out var zuschlag))
-                kalkulation.ZusatzschutzAufschlag = zuschlag;
+            var certificate = new InsuranceCertificate();
+            certificate.documentType = DocumentType.Angebot;
+            certificate.calculationType = (CalculationType)Enum.Parse(typeof(CalculationType), ctrl_CertificationType.Text);
+            certificate.calculationBase = new CalculationBase();
+            certificate.riskFactor = (RiskFactor)Enum.Parse(typeof(RiskFactor), ctrl_RiskFactor.Text);
+            certificate.shouldConsiderAdditionalProtection = ctrl_IncludeAdditionalProtection.Checked;
+            if (float.TryParse(ctrl_AdditionalProtectionValue.Text.Replace("%", string.Empty), out var zuschlag))
+                certificate.additionalProtection = zuschlag;
             else
-                kalkulation.ZusatzschutzAufschlag = 0;
-            kalkulation.HatWebshop = ctrl_HatWebshop.Checked;
-            kalkulation.Versicherungssumme = decimal.Parse(ctrl_Versicherungssumme.Text);
+                certificate.additionalProtection = 0;
+            certificate.hasWebshop = ctrl_HasWebshop.Checked;
+            certificate.sumInsured = decimal.Parse(ctrl_InsuredValue.Text);
 
-            Kalkuliere(kalkulation);
-
-            Kalkulation = kalkulation;
+            Certificate = calculateCertificate(certificate);
 
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void Kalkuliere(Dokument dokument)
+        private InsuranceCertificate calculateCertificate(InsuranceCertificate certificate)
         {
             //Versicherungsnehmer, die nach Haushaltssumme versichert werden (primär Vereine) stellen immer ein mittleres Risiko da
-            if (dokument.Berechnungsart == Berechnungsart.Haushaltssumme)
+            if (certificate.calculationType == CalculationType.HousholdBudget)
             {
-                ctrl_Risiko.SelectedText = Enum.GetName(typeof(Risiko), Risiko.Mittel);
-                dokument.Risiko = Risiko.Mittel;
+                ctrl_RiskFactor.SelectedText = Enum.GetName(typeof(RiskFactor), RiskFactor.Moderate);
+                certificate.riskFactor = RiskFactor.Moderate;
             }
 
             //Versicherungsnehmer, die nach Anzahl Mitarbeiter abgerechnet werden und mehr als 5 Mitarbeiter haben, können kein Lösegeld absichern
-            if (dokument.Berechnungsart == Berechnungsart.AnzahlMitarbeiter)
-                if (dokument.Berechnungbasis > 5)
+            if (certificate.calculationType == CalculationType.employeeCount)
+                if (certificate.calculationBase.baseVolume > 5)
                 {
-                    dokument.InkludiereZusatzschutz = false;
-                    dokument.ZusatzschutzAufschlag = 0;
-                    ctrl_ZusatzschutzAufschlag.Visible = false;
-                    ctrl_InkludiereZusatzschutz.Checked = false;
+                    certificate.shouldConsiderAdditionalProtection = false;
+                    certificate.additionalProtection = 0;
+                    ctrl_AdditionalProtectionValue.Visible = false;
+                    ctrl_IncludeAdditionalProtection.Checked = false;
                 }
 
             //Versicherungsnehmer, die nach Umsatz abgerechnet werden, mehr als 100.000€ ausweisen und Lösegeld versichern, haben immer mittleres Risiko
-            if (dokument.Berechnungsart == Berechnungsart.Umsatz)
-                if (dokument.Versicherungssumme > 100000m && dokument.InkludiereZusatzschutz)
+            if (certificate.calculationType == CalculationType.salesVolume)
+                if (certificate.sumInsured > 100000m && certificate.shouldConsiderAdditionalProtection)
                 {
-                    ctrl_Risiko.SelectedText = Enum.GetName(typeof(Risiko), Risiko.Mittel);
-                    dokument.Risiko = Risiko.Mittel;
+                    ctrl_RiskFactor.SelectedText = Enum.GetName(typeof(RiskFactor), RiskFactor.Moderate);
+                    certificate.riskFactor = RiskFactor.Moderate;
                 }
 
-            decimal beitrag;
-            switch (dokument.Berechnungsart)
+            decimal membershipFee;
+            switch (certificate.calculationType)
             {
-                case Berechnungsart.Umsatz:
-                    dokument.Berechnungbasis = (decimal) Math.Pow((double)dokument.Versicherungssumme, 0.25d);
-                    beitrag = 1.1m * dokument.Berechnungbasis;
-                    if (dokument.HatWebshop) //Webshop gibt es nur bei Unternehmen, die nach Umsatz abgerechnet werden
-                        beitrag *= 2;
+                case CalculationType.salesVolume:
+                    certificate.calculationBase.setBaseVolume((decimal) Math.Pow((double)certificate.sumInsured, 0.25d));
+                    membershipFee = 1.1m * certificate.calculationBase.baseVolume;
+                    if (certificate.hasWebshop) //Webshop gibt es nur bei Unternehmen, die nach Umsatz abgerechnet werden
+                        membershipFee *= 2;
                     break;
-                case Berechnungsart.Haushaltssumme:
-                    dokument.Berechnungbasis = (decimal)Math.Log10((double) dokument.Versicherungssumme);
-                    beitrag = 1.0m * dokument.Berechnungbasis + 100m;
+                case CalculationType.HousholdBudget:
+                    certificate.calculationBase.setBaseVolume((decimal)Math.Log10((double) certificate.sumInsured));
+                    membershipFee = 1.0m * certificate.calculationBase.baseVolume + 100m;
                     break;
-                case Berechnungsart.AnzahlMitarbeiter:
-                    dokument.Berechnungbasis = dokument.Versicherungssumme / 1000;
+                case CalculationType.employeeCount:
+                    certificate.calculationBase.setBaseVolume(certificate.sumInsured / 1000);
 
-                    if (dokument.Berechnungbasis < 4)
-                        beitrag = dokument.Berechnungbasis * 250m;
+                    if (certificate.calculationBase.baseVolume < 4)
+                        membershipFee = certificate.calculationBase.baseVolume * 250m;
                     else
-                        beitrag = dokument.Berechnungbasis * 200m;
+                        membershipFee = certificate.calculationBase.baseVolume * 200m;
 
                     break;
                 default:
                     throw new Exception();
             }
 
-            if (dokument.InkludiereZusatzschutz)
-                beitrag *= 1.0m + (decimal) dokument.ZusatzschutzAufschlag / 100.0m;
+            if (certificate.shouldConsiderAdditionalProtection)
+                membershipFee *= 1.0m + (decimal) certificate.additionalProtection / 100.0m;
 
-            if (dokument.Risiko == Risiko.Mittel)
+            if (certificate.riskFactor == RiskFactor.Moderate)
             {
-                if (dokument.Berechnungsart is Berechnungsart.Haushaltssumme or Berechnungsart.Umsatz)
-                    beitrag *= 1.2m;
+                if (certificate.calculationType is CalculationType.HousholdBudget or CalculationType.salesVolume)
+                    membershipFee *= 1.2m;
                 else
-                    beitrag *= 1.3m;
+                    membershipFee *= 1.3m;
             }
 
-            dokument.Berechnungbasis = Math.Round(dokument.Berechnungbasis, 2);
-            dokument.Beitrag = Math.Round(beitrag, 2);
+            certificate.calculationBase.setBaseVolume(Math.Round(certificate.calculationBase.baseVolume, 2));
+            certificate.membershipFee = Math.Round(membershipFee, 2);
+            return certificate;
         }
 
         private void Form_NeueKalkulation_Load(object sender, EventArgs e)
         {
-            var berechnungsarten = Enum.GetNames(typeof(Berechnungsart));
-            ctrl_Berechnungsart.Items.AddRange(berechnungsarten);
+            var berechnungsarten = Enum.GetNames(typeof(CalculationType));
+            ctrl_CertificationType.Items.AddRange(berechnungsarten);
 
-            var risiken = Enum.GetNames(typeof(Risiko));
-            ctrl_Risiko.Items.AddRange(risiken);
+            var risiken = Enum.GetNames(typeof(RiskFactor));
+            ctrl_RiskFactor.Items.AddRange(risiken);
         }
 
         private void ctrl_InkludiereZusatzschutz_CheckedChanged(object sender, EventArgs e)
         {
-            ctrl_ZusatzschutzAufschlag.Visible = ctrl_InkludiereZusatzschutz.Checked;
+            ctrl_AdditionalProtectionValue.Visible = ctrl_IncludeAdditionalProtection.Checked;
         }
     }
 }

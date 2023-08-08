@@ -7,7 +7,7 @@ namespace coIT.BewirbDich.Winforms.Infrastructure;
 public class JsonRepository : IRepository
 {
     private readonly string _file;
-    private List<Dokument> _dokumente;
+    private List<InsuranceCertificate> _certificates;
 
     public JsonRepository(string file)
     {
@@ -19,32 +19,32 @@ public class JsonRepository : IRepository
     {
         if (!File.Exists(_file))
         {
-            var empty = Enumerable.Empty<Dokument>();
+            var empty = Enumerable.Empty<InsuranceCertificate>();
             File.WriteAllText(_file, JsonSerializer.Serialize(empty), Encoding.UTF8);
         }
 
         var json = File.ReadAllText(_file, Encoding.UTF8);
-        _dokumente = JsonSerializer.Deserialize<List<Dokument>>(json) ?? new List<Dokument>();
+        _certificates = JsonSerializer.Deserialize<List<InsuranceCertificate>>(json) ?? new List<InsuranceCertificate>();
     }
 
-    public Dokument? Find(Guid id)
+    public InsuranceCertificate? Find(Guid id)
     {
-        return _dokumente.SingleOrDefault(dok => dok.Id == id);
+        return _certificates.SingleOrDefault(dok => dok.Id == id);
     }
 
-    public List<Dokument> List()
+    public List<InsuranceCertificate> List()
     {
-        return _dokumente;
+        return _certificates;
     }
 
-    public void Add(Dokument dokument)
+    public void Add(InsuranceCertificate certificate)
     {
-        _dokumente.Add(dokument);
+        _certificates.Add(certificate);
     }
 
     public void Save()
     {
-        var json = JsonSerializer.Serialize(_dokumente);
+        var json = JsonSerializer.Serialize(_certificates);
         File.WriteAllText(_file, json, new UTF8Encoding());
     }
 }

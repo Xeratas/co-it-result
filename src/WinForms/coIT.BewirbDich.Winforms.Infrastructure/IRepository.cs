@@ -4,8 +4,8 @@ namespace coIT.BewirbDich.Winforms.Infrastructure;
 
 public interface IRepository
 {
-    Dokument? Find(Guid id);
-    List<Dokument> List();
-    void Add(Dokument dokument);
+    InsuranceCertificate? Find(Guid id);
+    List<InsuranceCertificate> List();
+    void Add(InsuranceCertificate certificate);
     void Save();
 }

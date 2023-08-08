@@ -1,7 +1,18 @@
 ﻿namespace coIT.BewirbDich.Winforms.UI
 {
-    partial class Form_NeueKalkulation
+    partial class CreateNewCertificate_Form
     {
+        private ComboBox ctrl_CertificationType;
+        private Label label_CerificateType;
+        private Label label_RiskFactor;
+        private ComboBox ctrl_RiskFactor;
+        private RadioButton ctrl_HasWebshop;
+        private TextBox ctrl_InsuredValue;
+        private Label label_InsuredValue;
+        private Button ctrl_Calculate;
+        private Button ctrl_Cancle;
+        private CheckBox ctrl_IncludeAdditionalProtection;
+        private ComboBox ctrl_AdditionalProtectionValue;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -28,143 +39,143 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrl_Berechnungsart = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ctrl_Risiko = new System.Windows.Forms.ComboBox();
-            this.ctrl_HatWebshop = new System.Windows.Forms.RadioButton();
-            this.ctrl_Versicherungssumme = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ctrl_Kalkuliere = new System.Windows.Forms.Button();
-            this.ctrl_Abbrechen = new System.Windows.Forms.Button();
-            this.ctrl_InkludiereZusatzschutz = new System.Windows.Forms.CheckBox();
-            this.ctrl_ZusatzschutzAufschlag = new System.Windows.Forms.ComboBox();
+            this.ctrl_CertificationType = new System.Windows.Forms.ComboBox();
+            this.label_CerificateType = new System.Windows.Forms.Label();
+            this.label_RiskFactor = new System.Windows.Forms.Label();
+            this.ctrl_RiskFactor = new System.Windows.Forms.ComboBox();
+            this.ctrl_HasWebshop = new System.Windows.Forms.RadioButton();
+            this.ctrl_InsuredValue = new System.Windows.Forms.TextBox();
+            this.label_InsuredValue = new System.Windows.Forms.Label();
+            this.ctrl_Calculate = new System.Windows.Forms.Button();
+            this.ctrl_Cancle = new System.Windows.Forms.Button();
+            this.ctrl_IncludeAdditionalProtection = new System.Windows.Forms.CheckBox();
+            this.ctrl_AdditionalProtectionValue = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // ctrl_Berechnungsart
             // 
-            this.ctrl_Berechnungsart.FormattingEnabled = true;
-            this.ctrl_Berechnungsart.Location = new System.Drawing.Point(165, 12);
-            this.ctrl_Berechnungsart.Name = "ctrl_Berechnungsart";
-            this.ctrl_Berechnungsart.Size = new System.Drawing.Size(231, 23);
-            this.ctrl_Berechnungsart.TabIndex = 0;
+            this.ctrl_CertificationType.FormattingEnabled = true;
+            this.ctrl_CertificationType.Location = new System.Drawing.Point(165, 12);
+            this.ctrl_CertificationType.Name = "ctrl_Berechnungsart";
+            this.ctrl_CertificationType.Size = new System.Drawing.Size(231, 23);
+            this.ctrl_CertificationType.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Berechnungsart";
+            this.label_CerificateType.AutoSize = true;
+            this.label_CerificateType.Location = new System.Drawing.Point(21, 15);
+            this.label_CerificateType.Name = "label1";
+            this.label_CerificateType.Size = new System.Drawing.Size(90, 15);
+            this.label_CerificateType.TabIndex = 1;
+            this.label_CerificateType.Text = "Berechnungsart";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Risiko";
+            this.label_RiskFactor.AutoSize = true;
+            this.label_RiskFactor.Location = new System.Drawing.Point(21, 60);
+            this.label_RiskFactor.Name = "label2";
+            this.label_RiskFactor.Size = new System.Drawing.Size(38, 15);
+            this.label_RiskFactor.TabIndex = 3;
+            this.label_RiskFactor.Text = "Risiko";
             // 
             // ctrl_Risiko
             // 
-            this.ctrl_Risiko.FormattingEnabled = true;
-            this.ctrl_Risiko.Location = new System.Drawing.Point(165, 58);
-            this.ctrl_Risiko.Name = "ctrl_Risiko";
-            this.ctrl_Risiko.Size = new System.Drawing.Size(231, 23);
-            this.ctrl_Risiko.TabIndex = 2;
+            this.ctrl_RiskFactor.FormattingEnabled = true;
+            this.ctrl_RiskFactor.Location = new System.Drawing.Point(165, 58);
+            this.ctrl_RiskFactor.Name = "ctrl_Risiko";
+            this.ctrl_RiskFactor.Size = new System.Drawing.Size(231, 23);
+            this.ctrl_RiskFactor.TabIndex = 2;
             // 
             // ctrl_HatWebshop
             // 
-            this.ctrl_HatWebshop.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ctrl_HatWebshop.Location = new System.Drawing.Point(21, 177);
-            this.ctrl_HatWebshop.Name = "ctrl_HatWebshop";
-            this.ctrl_HatWebshop.Size = new System.Drawing.Size(375, 47);
-            this.ctrl_HatWebshop.TabIndex = 6;
-            this.ctrl_HatWebshop.TabStop = true;
-            this.ctrl_HatWebshop.Text = "Hat Webshop";
-            this.ctrl_HatWebshop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ctrl_HatWebshop.UseVisualStyleBackColor = true;
+            this.ctrl_HasWebshop.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ctrl_HasWebshop.Location = new System.Drawing.Point(21, 177);
+            this.ctrl_HasWebshop.Name = "ctrl_HatWebshop";
+            this.ctrl_HasWebshop.Size = new System.Drawing.Size(375, 47);
+            this.ctrl_HasWebshop.TabIndex = 6;
+            this.ctrl_HasWebshop.TabStop = true;
+            this.ctrl_HasWebshop.Text = "Hat Webshop";
+            this.ctrl_HasWebshop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ctrl_HasWebshop.UseVisualStyleBackColor = true;
             // 
             // ctrl_Versicherungssumme
             // 
-            this.ctrl_Versicherungssumme.Location = new System.Drawing.Point(165, 104);
-            this.ctrl_Versicherungssumme.Name = "ctrl_Versicherungssumme";
-            this.ctrl_Versicherungssumme.Size = new System.Drawing.Size(231, 23);
-            this.ctrl_Versicherungssumme.TabIndex = 7;
-            this.ctrl_Versicherungssumme.Text = "100000";
-            this.ctrl_Versicherungssumme.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ctrl_InsuredValue.Location = new System.Drawing.Point(165, 104);
+            this.ctrl_InsuredValue.Name = "ctrl_Versicherungssumme";
+            this.ctrl_InsuredValue.Size = new System.Drawing.Size(231, 23);
+            this.ctrl_InsuredValue.TabIndex = 7;
+            this.ctrl_InsuredValue.Text = "100000";
+            this.ctrl_InsuredValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 107);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Versicherungssumme";
+            this.label_InsuredValue.AutoSize = true;
+            this.label_InsuredValue.Location = new System.Drawing.Point(21, 107);
+            this.label_InsuredValue.Name = "label3";
+            this.label_InsuredValue.Size = new System.Drawing.Size(120, 15);
+            this.label_InsuredValue.TabIndex = 8;
+            this.label_InsuredValue.Text = "Versicherungssumme";
             // 
             // ctrl_Kalkuliere
             // 
-            this.ctrl_Kalkuliere.Location = new System.Drawing.Point(218, 261);
-            this.ctrl_Kalkuliere.Name = "ctrl_Kalkuliere";
-            this.ctrl_Kalkuliere.Size = new System.Drawing.Size(178, 44);
-            this.ctrl_Kalkuliere.TabIndex = 9;
-            this.ctrl_Kalkuliere.Text = "Kalkulieren";
-            this.ctrl_Kalkuliere.UseVisualStyleBackColor = true;
-            this.ctrl_Kalkuliere.Click += new System.EventHandler(this.ctrl_Kalkuliere_Click);
+            this.ctrl_Calculate.Location = new System.Drawing.Point(218, 261);
+            this.ctrl_Calculate.Name = "ctrl_Kalkuliere";
+            this.ctrl_Calculate.Size = new System.Drawing.Size(178, 44);
+            this.ctrl_Calculate.TabIndex = 9;
+            this.ctrl_Calculate.Text = "Kalkulieren";
+            this.ctrl_Calculate.UseVisualStyleBackColor = true;
+            this.ctrl_Calculate.Click += new System.EventHandler(this.ctrl_calculateCertificate_Click);
             // 
             // ctrl_Abbrechen
             // 
-            this.ctrl_Abbrechen.Location = new System.Drawing.Point(21, 261);
-            this.ctrl_Abbrechen.Name = "ctrl_Abbrechen";
-            this.ctrl_Abbrechen.Size = new System.Drawing.Size(178, 44);
-            this.ctrl_Abbrechen.TabIndex = 10;
-            this.ctrl_Abbrechen.Text = "Abbrechen";
-            this.ctrl_Abbrechen.UseVisualStyleBackColor = true;
-            this.ctrl_Abbrechen.Click += new System.EventHandler(this.ctrl_Abbrechen_Click);
+            this.ctrl_Cancle.Location = new System.Drawing.Point(21, 261);
+            this.ctrl_Cancle.Name = "ctrl_Abbrechen";
+            this.ctrl_Cancle.Size = new System.Drawing.Size(178, 44);
+            this.ctrl_Cancle.TabIndex = 10;
+            this.ctrl_Cancle.Text = "Abbrechen";
+            this.ctrl_Cancle.UseVisualStyleBackColor = true;
+            this.ctrl_Cancle.Click += new System.EventHandler(this.ctrl_cancle_Click);
             // 
             // ctrl_InkludiereZusatzschutz
             // 
-            this.ctrl_InkludiereZusatzschutz.AutoSize = true;
-            this.ctrl_InkludiereZusatzschutz.Location = new System.Drawing.Point(21, 152);
-            this.ctrl_InkludiereZusatzschutz.Name = "ctrl_InkludiereZusatzschutz";
-            this.ctrl_InkludiereZusatzschutz.Size = new System.Drawing.Size(94, 19);
-            this.ctrl_InkludiereZusatzschutz.TabIndex = 11;
-            this.ctrl_InkludiereZusatzschutz.Text = "Zusatzschutz";
-            this.ctrl_InkludiereZusatzschutz.UseVisualStyleBackColor = true;
-            this.ctrl_InkludiereZusatzschutz.CheckedChanged += new System.EventHandler(this.ctrl_InkludiereZusatzschutz_CheckedChanged);
+            this.ctrl_IncludeAdditionalProtection.AutoSize = true;
+            this.ctrl_IncludeAdditionalProtection.Location = new System.Drawing.Point(21, 152);
+            this.ctrl_IncludeAdditionalProtection.Name = "ctrl_InkludiereZusatzschutz";
+            this.ctrl_IncludeAdditionalProtection.Size = new System.Drawing.Size(94, 19);
+            this.ctrl_IncludeAdditionalProtection.TabIndex = 11;
+            this.ctrl_IncludeAdditionalProtection.Text = "Zusatzschutz";
+            this.ctrl_IncludeAdditionalProtection.UseVisualStyleBackColor = true;
+            this.ctrl_IncludeAdditionalProtection.CheckedChanged += new System.EventHandler(this.ctrl_InkludiereZusatzschutz_CheckedChanged);
             // 
             // ctrl_ZusatzschutzAufschlag
             // 
-            this.ctrl_ZusatzschutzAufschlag.FormattingEnabled = true;
-            this.ctrl_ZusatzschutzAufschlag.Items.AddRange(new object[] {
+            this.ctrl_AdditionalProtectionValue.FormattingEnabled = true;
+            this.ctrl_AdditionalProtectionValue.Items.AddRange(new object[] {
             "10%",
             "20%",
             "25%"});
-            this.ctrl_ZusatzschutzAufschlag.Location = new System.Drawing.Point(165, 148);
-            this.ctrl_ZusatzschutzAufschlag.Name = "ctrl_ZusatzschutzAufschlag";
-            this.ctrl_ZusatzschutzAufschlag.Size = new System.Drawing.Size(231, 23);
-            this.ctrl_ZusatzschutzAufschlag.TabIndex = 12;
-            this.ctrl_ZusatzschutzAufschlag.Visible = false;
+            this.ctrl_AdditionalProtectionValue.Location = new System.Drawing.Point(165, 148);
+            this.ctrl_AdditionalProtectionValue.Name = "ctrl_ZusatzschutzAufschlag";
+            this.ctrl_AdditionalProtectionValue.Size = new System.Drawing.Size(231, 23);
+            this.ctrl_AdditionalProtectionValue.TabIndex = 12;
+            this.ctrl_AdditionalProtectionValue.Visible = false;
             // 
             // Form_NeueKalkulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 362);
-            this.Controls.Add(this.ctrl_ZusatzschutzAufschlag);
-            this.Controls.Add(this.ctrl_InkludiereZusatzschutz);
-            this.Controls.Add(this.ctrl_Abbrechen);
-            this.Controls.Add(this.ctrl_Kalkuliere);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.ctrl_Versicherungssumme);
-            this.Controls.Add(this.ctrl_HatWebshop);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.ctrl_Risiko);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.ctrl_Berechnungsart);
+            this.Controls.Add(this.ctrl_AdditionalProtectionValue);
+            this.Controls.Add(this.ctrl_IncludeAdditionalProtection);
+            this.Controls.Add(this.ctrl_Cancle);
+            this.Controls.Add(this.ctrl_Calculate);
+            this.Controls.Add(this.label_InsuredValue);
+            this.Controls.Add(this.ctrl_InsuredValue);
+            this.Controls.Add(this.ctrl_HasWebshop);
+            this.Controls.Add(this.label_RiskFactor);
+            this.Controls.Add(this.ctrl_RiskFactor);
+            this.Controls.Add(this.label_CerificateType);
+            this.Controls.Add(this.ctrl_CertificationType);
             this.Name = "Form_NeueKalkulation";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -177,17 +188,5 @@
         }
 
         #endregion
-
-        private ComboBox ctrl_Berechnungsart;
-        private Label label1;
-        private Label label2;
-        private ComboBox ctrl_Risiko;
-        private RadioButton ctrl_HatWebshop;
-        private TextBox ctrl_Versicherungssumme;
-        private Label label3;
-        private Button ctrl_Kalkuliere;
-        private Button ctrl_Abbrechen;
-        private CheckBox ctrl_InkludiereZusatzschutz;
-        private ComboBox ctrl_ZusatzschutzAufschlag;
     }
 }
